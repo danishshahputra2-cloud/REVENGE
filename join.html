@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Join Revenge</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<header class="fade-down">
+<h1>REVENGE TEAM</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="rules.html">Peraturan</a>
+<a href="members.html">Members</a>
+<a href="join.html">Join</a>
+</nav>
+
+</header>
+
+<section class="content fade-up">
+<h2>Apply Masuk Team</h2>
+
+<form id="joinForm">
+<input type="text" id="name" placeholder="Nama Minecraft" required>
+<input type="number" id="age" placeholder="Umur" required>
+
+<select id="skill">
+<option>Noob</option>
+<option>Average</option>
+<option>Pro</option>
+</select>
+
+<textarea id="reason" placeholder="Kenapa nak join?" required></textarea>
+
+<button type="submit" class="btn">Hantar</button>
+</form>
+
+<p id="status"></p>
+
+</section>
+
+<script>
+const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1484725384745586718/SV6YN0zTpPOVlAa1z8feIObktPgxC4kWP4V_DAbZRY9L8gx4Dgd3AGVzByYAyVyla2CG";
+
+document.getElementById("joinForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+/* AMBIL VALUE BETUL */
+let nama = document.getElementById("name").value;
+let umur = document.getElementById("age").value;
+let skill = document.getElementById("skill").value;
+let sebab = document.getElementById("reason").value;
+
+let data = {
+content: `🔥 PERMOHONAN MEMBER BARU REVENGE 🔥
+Nama: ${nama}
+Umur: ${umur}
+Skill: ${skill}
+Sebab: ${sebab}`
+};
+
+fetch(WEBHOOK_URL, {
+method: "POST",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify(data)
+}).then(() => {
+document.getElementById("status").innerText = "Berjaya dihantar!";
+}).catch(() => {
+document.getElementById("status").innerText = "Error!";
+});
+});
+</script>
+</body>
+</html>
