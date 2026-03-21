@@ -44,14 +44,14 @@
 </section>
 
 <script>
-const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1484725384745586718/SV6YN0zTpPOVlAa1z8feIObktPgxC4kWP4V_DAbZRY9L8gx4Dgd3AGVzByYAyVyla2CG";
+const WEBHOOK_URL = "YOUR_WEBHOOK_URL";
 
 document.getElementById("joinForm").addEventListener("submit", function(e){
 e.preventDefault();
 
-/* AMBIL VALUE BETUL */
 let nama = document.getElementById("name").value;
 let umur = document.getElementById("age").value;
+let discord = document.getElementById("discord").value; // TAMBAH NI
 let skill = document.getElementById("skill").value;
 let sebab = document.getElementById("reason").value;
 
@@ -59,6 +59,7 @@ let data = {
 content: `🔥 PERMOHONAN MEMBER BARU REVENGE 🔥
 Nama: ${nama}
 Umur: ${umur}
+User name Discord: ${discord}
 Skill: ${skill}
 Sebab: ${sebab}`
 };
