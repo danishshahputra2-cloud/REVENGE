@@ -17,7 +17,7 @@ function login() {
 
 function checkAdmin() {
     if (localStorage.getItem("isAdmin") !== "true") {
-        alert("Akses ditolak!");
+        alert("Akses ditolak! Sila login sebagai admin.");
         window.location.href = "login.html";
     }
 }
@@ -25,29 +25,6 @@ function checkAdmin() {
 function logout() {
     localStorage.removeItem("isAdmin");
     window.location.href = "index.html";
-}
-
-// ================= ROLES =================
-function updateRoles() {
-    localStorage.setItem("leader", document.getElementById("leaderInput").value);
-    localStorage.setItem("rightHand", document.getElementById("rightHandInput").value);
-    localStorage.setItem("leftHand", document.getElementById("leftHandInput").value);
-    localStorage.setItem("manager", document.getElementById("managerInput").value);
-    alert("Roles berjaya dikemaskini!");
-}
-
-function displayRoles() {
-    if (localStorage.getItem("leader"))
-        document.getElementById("leader").textContent = localStorage.getItem("leader");
-
-    if (localStorage.getItem("rightHand"))
-        document.getElementById("rightHand").textContent = localStorage.getItem("rightHand");
-
-    if (localStorage.getItem("leftHand"))
-        document.getElementById("leftHand").textContent = localStorage.getItem("leftHand");
-
-    if (localStorage.getItem("manager"))
-        document.getElementById("manager").textContent = localStorage.getItem("manager");
 }
 
 // ================= MEMBERS =================
@@ -59,9 +36,10 @@ function updateMembers() {
 
 function displayMembers() {
     const list = document.getElementById("membersList");
-    const data = localStorage.getItem("members");
+    if (!list) return;
 
-    if (list && data) {
+    const data = localStorage.getItem("members");
+    if (data) {
         const items = data.split("\n").filter(item => item.trim() !== "");
         list.innerHTML = items.map(item => `<li>${item}</li>`).join("");
     }
@@ -76,9 +54,10 @@ function updateRules() {
 
 function displayRules() {
     const list = document.getElementById("rulesList");
-    const data = localStorage.getItem("rules");
+    if (!list) return;
 
-    if (list && data) {
+    const data = localStorage.getItem("rules");
+    if (data) {
         const items = data.split("\n").filter(item => item.trim() !== "");
         list.innerHTML = items.map(item => `<li>${item}</li>`).join("");
     }
@@ -86,27 +65,13 @@ function displayRules() {
 
 // ================= LOAD ADMIN DATA =================
 function loadAdminData() {
-    if (document.getElementById("membersInput"))
+    if (document.getElementById("membersInput")) {
         document.getElementById("membersInput").value =
             localStorage.getItem("members") || "";
+    }
 
-    if (document.getElementById("rulesInput"))
+    if (document.getElementById("rulesInput")) {
         document.getElementById("rulesInput").value =
             localStorage.getItem("rules") || "";
-
-    if (document.getElementById("leaderInput"))
-        document.getElementById("leaderInput").value =
-            localStorage.getItem("leader") || "";
-
-    if (document.getElementById("rightHandInput"))
-        document.getElementById("rightHandInput").value =
-            localStorage.getItem("rightHand") || "";
-
-    if (document.getElementById("leftHandInput"))
-        document.getElementById("leftHandInput").value =
-            localStorage.getItem("leftHand") || "";
-
-    if (document.getElementById("managerInput"))
-        document.getElementById("managerInput").value =
-            localStorage.getItem("manager") || "";
+    }
 }

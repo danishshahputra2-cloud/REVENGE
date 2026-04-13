@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Admin Panel</title>
 <link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
 </head>
 <body onload="checkAdmin(); loadAdminData();">
 
@@ -18,23 +19,14 @@
 </header>
 
 <section class="content">
-<h2>Kemaskini Roles</h2>
-<input type="text" id="leaderInput" placeholder="Leader">
-<input type="text" id="rightHandInput" placeholder="Right Hand">
-<input type="text" id="leftHandInput" placeholder="Left Hand">
-<input type="text" id="managerInput" placeholder="Clan Manager">
-<button class="btn" onclick="updateRoles()">Simpan Roles</button>
-</section>
-
-<section class="content">
 <h2>Kemaskini Members</h2>
-<textarea id="membersInput" rows="8" placeholder="Satu nama setiap baris"></textarea>
+<textarea id="membersInput" rows="8" placeholder="Masukkan nama ahli (satu setiap baris)"></textarea>
 <button class="btn" onclick="updateMembers()">Simpan Members</button>
 </section>
 
 <section class="content">
 <h2>Kemaskini Rules</h2>
-<textarea id="rulesInput" rows="8" placeholder="Satu peraturan setiap baris"></textarea>
+<textarea id="rulesInput" rows="8" placeholder="Masukkan peraturan (satu setiap baris)"></textarea>
 <button class="btn" onclick="updateRules()">Simpan Rules</button>
 </section>
 
