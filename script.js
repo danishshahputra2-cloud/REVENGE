@@ -43,16 +43,22 @@ function logout() {
     window.location.replace("login.html");
 }
 
-// ================= MEMBERS (ADD + DISPLAY) =================
+// ================= MEMBERS =================
 function updateMembers() {
     let existing = localStorage.getItem("members") || "";
     let newData = document.getElementById("membersInput").value;
+
+    if (newData.trim() === "") {
+        alert("Sila isi member!");
+        return;
+    }
 
     let combined = existing + "\n" + newData;
 
     localStorage.setItem("members", combined.trim());
 
     document.getElementById("membersInput").value = "";
+
     displayMembers();
 
     alert("Member berjaya ditambah!");
@@ -62,23 +68,34 @@ function displayMembers() {
     const list = document.getElementById("membersList");
     if (!list) return;
 
-    const data = localStorage.getItem("members") || "";
+    let data = localStorage.getItem("members");
 
-    const items = data.split("\n").filter(i => i.trim() !== "");
+    if (!data || data.trim() === "") {
+        list.innerHTML = "<li>Tiada members</li>";
+        return;
+    }
+
+    const items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
 
     list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
 }
 
-// ================= RULES (ADD + DISPLAY) =================
+// ================= RULES =================
 function updateRules() {
     let existing = localStorage.getItem("rules") || "";
     let newData = document.getElementById("rulesInput").value;
+
+    if (newData.trim() === "") {
+        alert("Sila isi rules!");
+        return;
+    }
 
     let combined = existing + "\n" + newData;
 
     localStorage.setItem("rules", combined.trim());
 
     document.getElementById("rulesInput").value = "";
+
     displayRules();
 
     alert("Rules berjaya ditambah!");
@@ -88,14 +105,19 @@ function displayRules() {
     const list = document.getElementById("rulesList");
     if (!list) return;
 
-    const data = localStorage.getItem("rules") || "";
+    let data = localStorage.getItem("rules");
 
-    const items = data.split("\n").filter(i => i.trim() !== "");
+    if (!data || data.trim() === "") {
+        list.innerHTML = "<li>Tiada rules</li>";
+        return;
+    }
+
+    const items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
 
     list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
 }
 
-// ================= LOAD DATA =================
+// ================= LOAD ADMIN DATA =================
 function loadAdminData() {
     const membersInput = document.getElementById("membersInput");
     const rulesInput = document.getElementById("rulesInput");
