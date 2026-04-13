@@ -43,45 +43,59 @@ function logout() {
     window.location.replace("login.html");
 }
 
-// ================= MEMBERS =================
+// ================= MEMBERS (ADD + DISPLAY) =================
 function updateMembers() {
-    const members = document.getElementById("membersInput").value;
-    localStorage.setItem("members", members);
-    alert("Senarai ahli berjaya dikemaskini!");
+    let existing = localStorage.getItem("members") || "";
+    let newData = document.getElementById("membersInput").value;
+
+    let combined = existing + "\n" + newData;
+
+    localStorage.setItem("members", combined.trim());
+
+    document.getElementById("membersInput").value = "";
+    displayMembers();
+
+    alert("Member berjaya ditambah!");
 }
 
 function displayMembers() {
     const list = document.getElementById("membersList");
     if (!list) return;
 
-    const data = localStorage.getItem("members");
+    const data = localStorage.getItem("members") || "";
 
-    if (data) {
-        const items = data.split("\n").filter(i => i.trim() !== "");
-        list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
-    }
+    const items = data.split("\n").filter(i => i.trim() !== "");
+
+    list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
 }
 
-// ================= RULES =================
+// ================= RULES (ADD + DISPLAY) =================
 function updateRules() {
-    const rules = document.getElementById("rulesInput").value;
-    localStorage.setItem("rules", rules);
-    alert("Peraturan berjaya dikemaskini!");
+    let existing = localStorage.getItem("rules") || "";
+    let newData = document.getElementById("rulesInput").value;
+
+    let combined = existing + "\n" + newData;
+
+    localStorage.setItem("rules", combined.trim());
+
+    document.getElementById("rulesInput").value = "";
+    displayRules();
+
+    alert("Rules berjaya ditambah!");
 }
 
 function displayRules() {
     const list = document.getElementById("rulesList");
     if (!list) return;
 
-    const data = localStorage.getItem("rules");
+    const data = localStorage.getItem("rules") || "";
 
-    if (data) {
-        const items = data.split("\n").filter(i => i.trim() !== "");
-        list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
-    }
+    const items = data.split("\n").filter(i => i.trim() !== "");
+
+    list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
 }
 
-// ================= LOAD ADMIN DATA =================
+// ================= LOAD DATA =================
 function loadAdminData() {
     const membersInput = document.getElementById("membersInput");
     const rulesInput = document.getElementById("rulesInput");

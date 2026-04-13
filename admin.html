@@ -7,7 +7,7 @@
 <script src="script.js"></script>
 </head>
 
-<body onload="checkAdmin(); loadAdminData();">
+<body onload="checkAdmin(); loadAdminData(); displayMembers(); displayRules();">
 
 <header>
 <h1>ADMIN PANEL</h1>
@@ -20,18 +20,30 @@
 </nav>
 </header>
 
+<!-- ================= MEMBERS ================= -->
 <section class="content">
 <h2>Kemaskini Members</h2>
-<textarea id="membersInput" rows="8"
+
+<textarea id="membersInput" rows="6"
 placeholder="Masukkan nama ahli (satu setiap baris)"></textarea>
-<button class="btn" onclick="updateMembers()">Simpan Members</button>
+
+<button class="btn" onclick="updateMembers()">Tambah Members</button>
+
+<h3>Senarai Members</h3>
+<ul id="membersList"></ul>
 </section>
 
+<!-- ================= RULES ================= -->
 <section class="content">
 <h2>Kemaskini Rules</h2>
-<textarea id="rulesInput" rows="8"
+
+<textarea id="rulesInput" rows="6"
 placeholder="Masukkan peraturan (satu setiap baris)"></textarea>
-<button class="btn" onclick="updateRules()">Simpan Rules</button>
+
+<button class="btn" onclick="updateRules()">Tambah Rules</button>
+
+<h3>Senarai Rules</h3>
+<ul id="rulesList"></ul>
 </section>
 
 </body>
