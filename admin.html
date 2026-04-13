@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Revenge SMP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkAdmin()">
+
+<header>
+    <h1>Revenge SMP - Admin Panel</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="members.html">Members</a>
+        <a href="rules.html">Rules</a>
+        <a href="join.html">Join</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </nav>
+</header>
+
+<div class="admin-container content">
+    <h2>👑 Admin Dashboard</h2>
+    <p>Selamat datang, Admin!</p>
+
+    <div class="admin-box">
+        <h3>Kawalan Admin</h3>
+        <p>Gunakan halaman ini untuk mengurus laman web Revenge SMP.</p>
+        <button class="btn" onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

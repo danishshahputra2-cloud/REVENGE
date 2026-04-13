@@ -11,7 +11,6 @@ body {
     background: url('minecraft-aesthetic-dark-green-mushroom-house-o4p5i28a4zglbs1l.jpg') no-repeat center/cover;
     color: white;
     overflow-x: hidden;
-
     padding-top: 110px;
 }
 
@@ -22,8 +21,7 @@ header {
     left: 0;
     width: 100%;
     height: 100px;
-    
-    background: rgba(139,0,0,0.9);
+    background: rgba(139, 0, 0, 0.9);
     text-align: center;
     box-shadow: 0 0 25px red;
     z-index: 1000;
@@ -35,7 +33,7 @@ header h1 {
     text-shadow: 0 0 10px black, 0 0 20px red;
 }
 
-/* ===== NAV ===== */
+/* ===== NAVIGATION ===== */
 nav {
     margin-top: 5px;
 }
@@ -64,20 +62,17 @@ nav a.active {
     padding: 30px;
     margin: 40px auto;
     max-width: 800px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 12px;
     box-shadow: 0 0 20px red;
-
-   
 }
 
-/* ===== HERO ===== */
+/* ===== HERO SECTION ===== */
 .hero {
     text-align: center;
-    margin-top: 120px; /* turunkan sikit dari header */
+    margin-top: 120px;
 }
 
-/* BAGI TEXT LEBIH CANTIK */
 .hero h2 {
     font-size: 32px;
     margin-bottom: 10px;
@@ -90,7 +85,6 @@ nav a.active {
     color: #ddd;
 }
 
-/* BUTTON CENTER & KEMAS */
 .hero .btn {
     display: inline-block;
 }
@@ -103,9 +97,16 @@ nav a.active {
     border-radius: 8px;
     color: white;
     cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-/* ===== FORM JADI KE BAWAH ===== */
+.btn:hover {
+    background: darkred;
+    box-shadow: 0 0 10px red;
+}
+
+/* ===== FORM ===== */
 #joinForm {
     display: flex;
     flex-direction: column;
@@ -131,7 +132,59 @@ nav a.active {
     width: 100%;
 }
 
-/* ===== FIX ANIMATION BUG ===== */
+/* ===== LOGIN & ADMIN PANEL ===== */
+.login-container,
+.admin-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 12px;
+    box-shadow: 0 0 20px red;
+    text-align: center;
+    animation: fadeDown 0.8s ease-in-out;
+}
+
+.login-container h2,
+.admin-container h2 {
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px black, 0 0 20px red;
+}
+
+/* ===== INPUT LOGIN ===== */
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+/* ===== ADMIN BOX ===== */
+.admin-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(139, 0, 0, 0.4);
+    border-radius: 10px;
+    box-shadow: 0 0 10px red;
+}
+
+/* ===== BUTTON DALAM ADMIN ===== */
+.login-container .btn,
+.admin-container .btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* ===== ERROR MESSAGE ===== */
+.error-message {
+    color: #ff4d4d;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* ===== ANIMATION ===== */
 .fade-down {
     animation: fadeDown 1s ease forwards;
 }
@@ -144,5 +197,49 @@ nav a.active {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ===== FOOTER (OPTIONAL) ===== */
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px red;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .content {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .login-container,
+    .admin-container {
+        width: 90%;
     }
 }
