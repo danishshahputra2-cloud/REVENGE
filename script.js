@@ -54,11 +54,9 @@ function updateMembers() {
     }
 
     let combined = existing + "\n" + newData;
-
     localStorage.setItem("members", combined.trim());
 
     document.getElementById("membersInput").value = "";
-
     displayMembers();
 
     alert("Member berjaya ditambah!");
@@ -77,7 +75,38 @@ function displayMembers() {
 
     const items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
 
-    list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
+    list.innerHTML = items.map((item, index) => `
+        <li>
+            ${item}
+            <button onclick="editMember(${index})">Edit</button>
+            <button onclick="deleteMember(${index})">Padam</button>
+        </li>
+    `).join("");
+}
+
+function deleteMember(index) {
+    let data = localStorage.getItem("members") || "";
+    let items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
+
+    if (!confirm("Padam member ini?")) return;
+
+    items.splice(index, 1);
+
+    localStorage.setItem("members", items.join("\n"));
+    displayMembers();
+}
+
+function editMember(index) {
+    let data = localStorage.getItem("members") || "";
+    let items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
+
+    let newName = prompt("Edit nama member:", items[index]);
+
+    if (newName !== null && newName.trim() !== "") {
+        items[index] = newName;
+        localStorage.setItem("members", items.join("\n"));
+        displayMembers();
+    }
 }
 
 // ================= RULES =================
@@ -91,11 +120,9 @@ function updateRules() {
     }
 
     let combined = existing + "\n" + newData;
-
     localStorage.setItem("rules", combined.trim());
 
     document.getElementById("rulesInput").value = "";
-
     displayRules();
 
     alert("Rules berjaya ditambah!");
@@ -107,16 +134,48 @@ function displayRules() {
 
     let data = localStorage.getItem("rules");
 
-    // ❗ PENTING: kalau tak ada data, jangan overwrite HTML
-    if (!data) return;
+    if (!data || data.trim() === "") {
+        list.innerHTML = "<li>Tiada rules</li>";
+        return;
+    }
 
-    const items = data
-        .split("\n")
-        .map(i => i.trim())
-        .filter(i => i !== "");
+    const items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
 
-    list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
+    list.innerHTML = items.map((item, index) => `
+        <li>
+            ${item}
+            <button onclick="editRule(${index})">Edit</button>
+            <button onclick="deleteRule(${index})">Padam</button>
+        </li>
+    `).join("");
 }
+
+function deleteRule(index) {
+    let data = localStorage.getItem("rules") || "";
+    let items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
+
+    if (!confirm("Padam rule ini?")) return;
+
+    items.splice(index, 1);
+
+    localStorage.setItem("rules", items.join("\n"));
+    displayRules();
+}
+
+function editRule(index) {
+    let data = localStorage.getItem("rules") || "";
+    let items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
+
+    let newRule = prompt("Edit rule:", items[index]);
+
+    if (newRule !== null && newRule.trim() !== "") {
+        items[index] = newRule;
+        localStorage.setItem("rules", items.join("\n"));
+        displayRules();
+    }
+}
+
+// ================= INIT DEFAULT RULES =================
 function initDefaultRules() {
     if (!localStorage.getItem("rules")) {
         const defaultRules = Array.from(
@@ -133,10 +192,10 @@ function loadAdminData() {
     const rulesInput = document.getElementById("rulesInput");
 
     if (membersInput) {
-        membersInput.value = localStorage.getItem("members") || "";
+        membersInput.value = "";
     }
 
     if (rulesInput) {
-        rulesInput.value = localStorage.getItem("rules") || "";
+        rulesInput.value = "";
     }
 }
