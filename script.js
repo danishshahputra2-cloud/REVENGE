@@ -107,14 +107,24 @@ function displayRules() {
 
     let data = localStorage.getItem("rules");
 
-    if (!data || data.trim() === "") {
-        list.innerHTML = "<li>Tiada rules</li>";
-        return;
-    }
+    // ❗ PENTING: kalau tak ada data, jangan overwrite HTML
+    if (!data) return;
 
-    const items = data.split("\n").map(i => i.trim()).filter(i => i !== "");
+    const items = data
+        .split("\n")
+        .map(i => i.trim())
+        .filter(i => i !== "");
 
     list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
+}
+function initDefaultRules() {
+    if (!localStorage.getItem("rules")) {
+        const defaultRules = Array.from(
+            document.querySelectorAll("#rulesList li")
+        ).map(li => li.innerText).join("\n");
+
+        localStorage.setItem("rules", defaultRules);
+    }
 }
 
 // ================= LOAD ADMIN DATA =================
