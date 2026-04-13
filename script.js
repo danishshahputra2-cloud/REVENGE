@@ -1,4 +1,4 @@
-// ================= LOGIN ADMIN =================
+// ================= LOGIN =================
 const ADMIN_USERNAME = "admin";
 const ADMIN_PASSWORD = "revenge123";
 
@@ -9,22 +9,38 @@ function login() {
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         localStorage.setItem("isAdmin", "true");
+        localStorage.setItem("loginTime", Date.now());
         window.location.href = "admin.html";
     } else {
         error.textContent = "Username atau password salah!";
     }
 }
 
+// ================= CHECK ADMIN =================
 function checkAdmin() {
-    if (localStorage.getItem("isAdmin") !== "true") {
-        alert("Akses ditolak! Sila login sebagai admin.");
-        window.location.href = "login.html";
+    const isAdmin = localStorage.getItem("isAdmin");
+    const loginTime = localStorage.getItem("loginTime");
+
+    const ONE_HOUR = 60 * 60 * 1000;
+
+    if (!isAdmin || !loginTime) {
+        window.location.replace("login.html");
+        return;
+    }
+
+    if (Date.now() - loginTime > ONE_HOUR) {
+        localStorage.removeItem("isAdmin");
+        localStorage.removeItem("loginTime");
+        alert("Session tamat. Sila login semula.");
+        window.location.replace("login.html");
     }
 }
 
+// ================= LOGOUT =================
 function logout() {
     localStorage.removeItem("isAdmin");
-    window.location.href = "index.html";
+    localStorage.removeItem("loginTime");
+    window.location.replace("login.html");
 }
 
 // ================= MEMBERS =================
@@ -39,9 +55,10 @@ function displayMembers() {
     if (!list) return;
 
     const data = localStorage.getItem("members");
+
     if (data) {
-        const items = data.split("\n").filter(item => item.trim() !== "");
-        list.innerHTML = items.map(item => `<li>${item}</li>`).join("");
+        const items = data.split("\n").filter(i => i.trim() !== "");
+        list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
     }
 }
 
@@ -57,21 +74,23 @@ function displayRules() {
     if (!list) return;
 
     const data = localStorage.getItem("rules");
+
     if (data) {
-        const items = data.split("\n").filter(item => item.trim() !== "");
-        list.innerHTML = items.map(item => `<li>${item}</li>`).join("");
+        const items = data.split("\n").filter(i => i.trim() !== "");
+        list.innerHTML = items.map(i => `<li>${i}</li>`).join("");
     }
 }
 
 // ================= LOAD ADMIN DATA =================
 function loadAdminData() {
-    if (document.getElementById("membersInput")) {
-        document.getElementById("membersInput").value =
-            localStorage.getItem("members") || "";
+    const membersInput = document.getElementById("membersInput");
+    const rulesInput = document.getElementById("rulesInput");
+
+    if (membersInput) {
+        membersInput.value = localStorage.getItem("members") || "";
     }
 
-    if (document.getElementById("rulesInput")) {
-        document.getElementById("rulesInput").value =
-            localStorage.getItem("rules") || "";
+    if (rulesInput) {
+        rulesInput.value = localStorage.getItem("rules") || "";
     }
 }

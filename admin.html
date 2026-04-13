@@ -6,10 +6,12 @@
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 </head>
+
 <body onload="checkAdmin(); loadAdminData();">
 
 <header>
 <h1>ADMIN PANEL</h1>
+
 <nav>
 <a href="index.html">Home</a>
 <a href="members.html">Members</a>
@@ -20,13 +22,15 @@
 
 <section class="content">
 <h2>Kemaskini Members</h2>
-<textarea id="membersInput" rows="8" placeholder="Masukkan nama ahli (satu setiap baris)"></textarea>
+<textarea id="membersInput" rows="8"
+placeholder="Masukkan nama ahli (satu setiap baris)"></textarea>
 <button class="btn" onclick="updateMembers()">Simpan Members</button>
 </section>
 
 <section class="content">
 <h2>Kemaskini Rules</h2>
-<textarea id="rulesInput" rows="8" placeholder="Masukkan peraturan (satu setiap baris)"></textarea>
+<textarea id="rulesInput" rows="8"
+placeholder="Masukkan peraturan (satu setiap baris)"></textarea>
 <button class="btn" onclick="updateRules()">Simpan Rules</button>
 </section>
 
