@@ -2,38 +2,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Rules</title>
+<title>Admin Panel</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<div class="overlay"></div>
+<body onload="checkAdmin(); loadAdminData();">
 
 <header>
-<h1>REVENGE TEAM</h1>
-
+<h1>ADMIN PANEL</h1>
 <nav>
 <a href="index.html">Home</a>
-<a href="rules.html">Peraturan</a>
 <a href="members.html">Members</a>
-<a href="join.html">Join</a>
+<a href="rules.html">Peraturan</a>
+<a href="#" onclick="logout()">Logout</a>
 </nav>
-
 </header>
 
 <section class="content">
-<ul>
-<li>Pajak 1.500 per minggu</li>
-<li>Ikut arahan leader</li>
-<li>Jaga nama team</li>
-<li>Jangan ambil barang tanpa izin</li>
-<li>Denda 6.000</li>
-<li>Selesaikan konflik dengan tenang</li>
-<li>Rusuh ada batas</li>
-<li>Denda kamar 10K</li>
-<li>Denda spawner 500K</li>
-<li>Curi spawner = ban + 1M</li>
-</ul>
+<h2>Kemaskini Roles</h2>
+<input type="text" id="leaderInput" placeholder="Leader">
+<input type="text" id="rightHandInput" placeholder="Right Hand">
+<input type="text" id="leftHandInput" placeholder="Left Hand">
+<input type="text" id="managerInput" placeholder="Clan Manager">
+<button class="btn" onclick="updateRoles()">Simpan Roles</button>
+</section>
+
+<section class="content">
+<h2>Kemaskini Members</h2>
+<textarea id="membersInput" rows="8" placeholder="Satu nama setiap baris"></textarea>
+<button class="btn" onclick="updateMembers()">Simpan Members</button>
+</section>
+
+<section class="content">
+<h2>Kemaskini Rules</h2>
+<textarea id="rulesInput" rows="8" placeholder="Satu peraturan setiap baris"></textarea>
+<button class="btn" onclick="updateRules()">Simpan Rules</button>
 </section>
 
 </body>

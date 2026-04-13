@@ -11,26 +11,24 @@
 
 <header>
 <h1>REVENGE TEAM</h1>
-
 <nav>
 <a href="index.html">Home</a>
 <a href="rules.html">Peraturan</a>
-<a href="members.html">Members</a>
+<a href="members.html" class="active">Members</a>
 <a href="join.html">Join</a>
 </nav>
-
 </header>
 
 <section class="content">
-<h2>Leader</h2><p>SHAHPUTRA</p>
-<h2>Right Hand</h2><p>pikamers3436</p>
-<h2>Left Hand</h2><p>Bread</p>
-<h2>Clan Manager</h2><p>OWN GoodSMP</p>
+<h2>Leader</h2><p id="leader">SHAHPUTRA</p>
+<h2>Right Hand</h2><p id="rightHand">pikamers3436</p>
+<h2>Left Hand</h2><p id="leftHand">Bread</p>
+<h2>Clan Manager</h2><p id="manager">OWN GoodSMP</p>
 </section>
 
 <section class="content">
 <h2>Members</h2>
-<ul>
+<ul id="membersList">
 <li>RovcoNaga</li>
 <li>Fixt</li>
 <li>Monzyy</li>
@@ -40,6 +38,12 @@
 <li>NeroTzy</li>
 </ul>
 </section>
+
+<script src="script.js"></script>
+<script>
+displayMembers();
+displayRoles();
+</script>
 
 </body>
 </html>

@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Panel - Revenge SMP</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Admin Panel</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body onload="checkAdmin()">
+<body onload="checkAdmin(); loadAdminData();">
 
 <header>
-    <h1>Revenge SMP - Admin Panel</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="members.html">Members</a>
-        <a href="rules.html">Rules</a>
-        <a href="join.html">Join</a>
-        <a href="#" onclick="logout()">Logout</a>
-    </nav>
+<h1>ADMIN PANEL</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="members.html">Members</a>
+<a href="rules.html">Peraturan</a>
+<a href="#" onclick="logout()">Logout</a>
+</nav>
 </header>
 
-<div class="admin-container content">
-    <h2>👑 Admin Dashboard</h2>
-    <p>Selamat datang, Admin!</p>
+<section class="content">
+<h2>Kemaskini Roles</h2>
+<input type="text" id="leaderInput" placeholder="Leader">
+<input type="text" id="rightHandInput" placeholder="Right Hand">
+<input type="text" id="leftHandInput" placeholder="Left Hand">
+<input type="text" id="managerInput" placeholder="Clan Manager">
+<button class="btn" onclick="updateRoles()">Simpan Roles</button>
+</section>
 
-    <div class="admin-box">
-        <h3>Kawalan Admin</h3>
-        <p>Gunakan halaman ini untuk mengurus laman web Revenge SMP.</p>
-        <button class="btn" onclick="logout()">Logout</button>
-    </div>
-</div>
+<section class="content">
+<h2>Kemaskini Members</h2>
+<textarea id="membersInput" rows="8" placeholder="Satu nama setiap baris"></textarea>
+<button class="btn" onclick="updateMembers()">Simpan Members</button>
+</section>
 
-<script src="script.js"></script>
+<section class="content">
+<h2>Kemaskini Rules</h2>
+<textarea id="rulesInput" rows="8" placeholder="Satu peraturan setiap baris"></textarea>
+<button class="btn" onclick="updateRules()">Simpan Rules</button>
+</section>
+
 </body>
 </html>
